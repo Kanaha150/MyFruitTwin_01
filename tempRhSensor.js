@@ -28,7 +28,7 @@
         connect() {
             return navigator.bluetooth.requestDevice({ 
                 filters: [{ 
-                    name: 'SmartGadget'}],
+                    name: 'Smart Humigadget'}],
                 optionalServices: [SENSIRION_TEMP_SERVICE_UUID] 
             })
                 .then(device => {
