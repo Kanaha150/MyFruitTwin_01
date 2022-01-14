@@ -26,7 +26,11 @@
             this._characteristics = new Map();
         }
         connect() {
-            return navigator.bluetooth.requestDevice({ filters: [{ services: [SENSIRION_DEVICE_INFO_SERVICE_UUID] }] })
+            return navigator.bluetooth.requestDevice({ 
+                filters: [{ 
+                    name: 'SmartGadget'}],
+                optionalServices: [SENSIRION_TEMP_SERVICE_UUID] 
+            })
                 .then(device => {
                     this.device = device;
                     return device.gatt.connect();
