@@ -37,10 +37,13 @@
                 })
                 .then(server => {
                     this.server = server;
-                    return server.getPrimaryService(0x2800);
+                    return server.getPrimaryService(SENSIRION_TEMP_SERVICE_UUID);
                 })
                 .then(service => {
-                    return this._cacheCharacteristic(service, 0x2803);
+                    return this._cacheCharacteristic(service, SENSIRION_TEMP_UUID);
+                })
+                .then(value => {
+                    console.log(`Temp is ${value.getUint8(0)}`);
                 })
         }
 
