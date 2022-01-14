@@ -2,10 +2,11 @@
     'use strict';
 
     // Custom Bluetooth service UUID
-    const SENSIRION_DEVICE_INFO_SERVICE_UUID = 0x180A;
+    const SENSIRION_DEVICE_INFO_SERVICE_UUID = 0x02010//0x180A;
     const SENSIRION_LOGGER_SERVICE_UUID = 0xF234; // 0000F234-B38D-4985-720E-0F993A68EE41;
     const SENSIRION_TEMP_SERVICE_UUID = 0x2234; //00002234-B38D-4985-720E-0F993A68EE41;
     const SENSIRION_RH_SERVICE_UUID = 0x1234; // 00001234-B38D-4985-720E-0F993A68EE41;
+
     // Custom Bluetooth Characteristic UUIDs
     const SENSIRION_DEVICE_NAME_UUID = 0x2A00;
     const SyncTimeMs_UUID = 0xF235; // 0000F235-B38D-4985-720E-0F993A68EE41;
@@ -42,10 +43,10 @@
         /* Temp Service */
 
         startNotificationsTempRhMeasurement() {
-            return this._startNotifications('00002235-B38D-4985-720E-0F993A68EE41');
+            return this._startNotifications(SENSIRION_TEMP_UUID);
         }
         stopNotificationsTempRhMeasurement() {
-            return this._stopNotifications('00002235-B38D-4985-720E-0F993A68EE41');
+            return this._stopNotifications(SENSIRION_TEMP_UUID);
         }
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
