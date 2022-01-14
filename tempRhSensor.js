@@ -1,6 +1,23 @@
 (function() {
     'use strict';
 
+    // Custom Bluetooth service UUID
+    const SENSIRION_DEVICE_INFO_SERVICE_UUID = 0x180A;
+    const SENSIRION_LOGGER_SERVICE_UUID = 0xF234; // 0000F234-B38D-4985-720E-0F993A68EE41;
+    const SENSIRION_TEMP_SERVICE_UUID = 0x2234; //00002234-B38D-4985-720E-0F993A68EE41;
+    const SENSIRION_RH_SERVICE_UUID = 0x1234; // 00001234-B38D-4985-720E-0F993A68EE41;
+    // Custom Bluetooth Characteristic UUIDs
+    const SENSIRION_DEVICE_NAME_UUID = 0x2A00;
+    const SyncTimeMs_UUID = 0xF235; // 0000F235-B38D-4985-720E-0F993A68EE41;
+    const OldestTimestampMs_UUID = 0xF236; //0000F236-B38D-4985-720E-0F993A68EE41;
+    const NewestTimestampMs_UUID = 0xF237; //0000F237-B38D-4985-720E-0F993A68EE41;
+    const StartLoggerDownload_UUID = 0xF238; //0000F238-B38D-4985-720E-0F993A68EE41;
+    const LoggerIntervalMs_UUID = 0xF239; //0000F239-B38D-4985-720E-0F993A68EE41;
+
+    const SENSIRION_TEMP_UUID =0x2235 //00001235-B38D-4985-720E-0F993A68EE41; or maybe 0x1235????
+    const SENSIRION_RH_UUID = 0x1235; //00002235-B38D-4985-720E-0F993A68EE41; or maybe 0x2235???????
+
+
     class TempRhSensor {
         constructor() {
             this.device = null;
@@ -8,27 +25,27 @@
             this._characteristics = new Map();
         }
         connect() {
-            return navigator.bluetooth.requestDevice({ filters: [{ services: [00002234 - B38D - 4985 - 720E-0 F993A68EE41] }] })
+            return navigator.bluetooth.requestDevice({ filters: [{ services: [SENSIRION_DEVICE_INFO_SERVICE_UUID] }] })
                 .then(device => {
                     this.device = device;
                     return device.gatt.connect();
                 })
                 .then(server => {
                     this.server = server;
-                    return server.getPrimaryService(00002234 - B38D - 4985 - 720E-0 F993A68EE41);
+                    return server.getPrimaryService(0x2800);
                 })
                 .then(service => {
-                    return this._cacheCharacteristic(service, 'temp_measurement');
+                    return this._cacheCharacteristic(service, 0x2803);
                 })
         }
 
-        /* Temp Rh Service */
+        /* Temp Service */
 
         startNotificationsTempRhMeasurement() {
-            return this._startNotifications('temp_measurement');
+            return this._startNotifications('00002235-B38D-4985-720E-0F993A68EE41');
         }
         stopNotificationsTempRhMeasurement() {
-            return this._stopNotifications('temp_measurement');
+            return this._stopNotifications('00002235-B38D-4985-720E-0F993A68EE41');
         }
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
