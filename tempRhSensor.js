@@ -1,5 +1,13 @@
 (function() {
     'use strict';
+// UUID found based on NRF connect
+const Generic_Access_Primary_Service = 0x1800;
+const Generic_Attribute_Primary_Service = 0x1801;
+const Device_Information_Primary_Service = 0x180A;
+const Battery_Service_Primary_Service = 0x180F;
+const Unknown_Service_Primary_Service_a = '0000f234-b38d-4985-720e-0f993a68ee41'; // same as Logger serice UUID
+const Unknown_Service_Primary_Service_b = '00001234-b38d-4985-720e-0f993a68ee41'; //same as RH service UUID
+const Unknown_Service_Primary_Service_c = '00002234-b38d-4985-720e-0f993a68ee41'; // same as TEmp service UUID
 
     // Custom Bluetooth service UUID
     const SENSIRION_DEVICE_INFO_SERVICE_UUID = 0x2800;// 180A; // 0x02010//0x180A;
@@ -29,7 +37,7 @@
             return navigator.bluetooth.requestDevice({ 
                 filters: [{ 
                     name: 'Smart Humigadget'}],
-                // optionalServices: [SENSIRION_TEMP_SERVICE_UUID] 
+                optionalServices: [Generic_Access_Primary_Service] 
             })
                 .then(device => {
                     this.device = device;
