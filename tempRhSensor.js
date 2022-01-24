@@ -51,7 +51,7 @@ const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'
                     return server.getPrimaryService(SENSIRION_TEMP_SERVICE_UUID);
                 })
                 .then(service => {
-                    return this._cacheCharacteristic(service, Temp_test_UUID_1);
+                    return this._cacheCharacteristic(service, Temp_test_UUID_2);
                 })
                 .then(value => {
                     console.log(`Temp is ${value.getUint8(0)}`);
@@ -61,10 +61,10 @@ const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'
         /* Temp Service */
 
         startNotificationsTempRhMeasurement() {
-            return this._startNotifications(Temp_test_UUID_1);
+            return this._startNotifications(Temp_test_UUID_2);
         }
         stopNotificationsTempRhMeasurement() {
-            return this._stopNotifications(Temp_test_UUID_1);
+            return this._stopNotifications(Temp_test_UUID_2);
         }
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
