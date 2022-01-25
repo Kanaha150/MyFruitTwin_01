@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-// UUID found based on NRF connect
+// Service UUID found based on NRF connect
 const Generic_Access_Primary_Service = 0x1800;
 const Generic_Attribute_Primary_Service = 0x1801;
 const Device_Information_Primary_Service = 0x180A;
@@ -29,6 +29,9 @@ const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'
     const Temp_test_UUID_2 = 0x2902;
     const SENSIRION_RH_UUID = 0x1235; //00002235-B38D-4985-720E-0F993A68EE41; or maybe 0x2235???????
 
+//Chraracteristic UUID found based on NRF 
+//under 2234
+const Unknown_Characteristic_1 = '00002235-b38d-4985-720e-0f993a68ee41';
 
     class TempRhSensor {
         constructor() {
@@ -51,7 +54,7 @@ const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'
                     return server.getPrimaryService(Unknown_Service_Primary_Service_3);
                 })
                 .then(service => {
-                    return this._cacheCharacteristic(service, Temp_test_UUID_2);
+                    return this._cacheCharacteristic(service, Unknown_Characteristic_1);
                 })
                 .then(value => {
                     console.log(`Temp is ${value.getUint8(0)}`);
@@ -61,10 +64,10 @@ const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'
         /* Temp Service */
 
         startNotificationsTempRhMeasurement() {
-            return this._startNotifications(Temp_test_UUID_2);
+            return this._startNotifications(Unknown_Characteristic_1);
         }
         stopNotificationsTempRhMeasurement() {
-            return this._stopNotifications(Temp_test_UUID_2);
+            return this._stopNotifications(Unknown_Characteristic_1);
         }
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
