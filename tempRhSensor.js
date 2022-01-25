@@ -57,9 +57,9 @@ const Unknown_Characteristic_1 = '00002235-b38d-4985-720e-0f993a68ee41';
                     return this._cacheCharacteristic(service, Unknown_Characteristic_1);
                     // return service.getCharacteristic(Unknown_Characteristic_1);
                 })
-                .then(characteristic => {
-                    return characteristic.readValue();
-                })
+                // .then(characteristic => {
+                //     return characteristic.readValue();
+                // })
                 .then(value => {
                     console.log(`Temp is ${value.getUint8(0)}`);
                 })
