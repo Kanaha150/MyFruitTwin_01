@@ -57,7 +57,7 @@ const Unknown_Characteristic_1 = '00002235-b38d-4985-720e-0f993a68ee41';
                     return this._cacheCharacteristic(service, Unknown_Characteristic_1);
                 })
                 .then(value => {
-                    console.log(`Temp is ${value.getUint8(0)}`);
+                    console.log(`Temp is ${value.getUint8(1)}`);
                 })
         }
 
@@ -72,7 +72,7 @@ const Unknown_Characteristic_1 = '00002235-b38d-4985-720e-0f993a68ee41';
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
             value = value.buffer ? value : new DataView(value);
-            let flags = value.getUint8(0);
+            let flags = value.getUint8(1);
             let rate16Bits = flags & 0x1;
             let result = {};
             let index = 1;
