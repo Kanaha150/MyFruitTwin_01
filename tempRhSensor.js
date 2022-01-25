@@ -5,7 +5,7 @@ const Generic_Access_Primary_Service = 0x1800;
 const Generic_Attribute_Primary_Service = 0x1801;
 const Device_Information_Primary_Service = 0x180A;
 const Battery_Service_Primary_Service = 0x180F;
-const Unknown_Service_Primary_Service_1 = '0000f234-b38d-4985-720e-0f993a68ee41'; // same as Logger serice UUID
+const Unknown_Service_Primary_Service_1 = '0000f234-b38d-4985-720e-0f993a68ee41'; // same as Logger service UUID
 const Unknown_Service_Primary_Service_2 = '00001234-b38d-4985-720e-0f993a68ee41'; //same as RH service UUID
 const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'; // same as Temp service UUID
 
@@ -48,7 +48,7 @@ const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'
                 })
                 .then(server => {
                     this.server = server;
-                    return server.getPrimaryService(SENSIRION_TEMP_SERVICE_UUID);
+                    return server.getPrimaryService(Unknown_Service_Primary_Service_3);
                 })
                 .then(service => {
                     return this._cacheCharacteristic(service, Temp_test_UUID_2);
