@@ -14,7 +14,7 @@ statusText.addEventListener('click', function() {
 function handleTempRhMeasurement(tempRhMeasurement) {
     tempRhMeasurement.addEventListener('characteristicvaluechanged', event => {
         var tempRhMeasurement = tempRhSensor.parseTempRh(event.target.value);
-        statusText.innerHTML = tempRhMeasurement.tempRh + ' &#x2764;';
+        statusText.innerHTML = tempRhMeasurement.tempRh + ' &#127777;';
         tempRhs.push(tempRhMeasurement.tempRh);
         drawWaves();
     });
