@@ -39,9 +39,8 @@ const Unknown_Service_Primary_Service_3 = '00002234-b38d-4985-720e-0f993a68ee41'
         connect() {
             return navigator.bluetooth.requestDevice({ 
                 filters: [{ 
-                //     name: 'Smart Humigadget'}],
-                services: [Generic_Access_Primary_Service] 
-                }]
+                    name: 'Smart Humigadget'}],
+                optionalServices: [Generic_Access_Primary_Service, Unknown_Service_Primary_Service_1,SENSIRION_TEMP_SERVICE_UUID] 
             })
                 .then(device => {
                     this.device = device;
