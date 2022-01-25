@@ -54,8 +54,8 @@ const Unknown_Characteristic_1 = '00002235-b38d-4985-720e-0f993a68ee41';
                     return server.getPrimaryService(Unknown_Service_Primary_Service_3);
                 })
                 .then(service => {
-                    // return this._cacheCharacteristic(service, Unknown_Characteristic_1);
-                    return service.getCharacteristic(Unknown_Characteristic_1);
+                    return this._cacheCharacteristic(service, Unknown_Characteristic_1);
+                    // return service.getCharacteristic(Unknown_Characteristic_1);
                 })
                 .then(characteristic => {
                     return characteristic.readValue();
