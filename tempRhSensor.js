@@ -61,7 +61,8 @@ const Unknown_Characteristic_1 = '00002235-b38d-4985-720e-0f993a68ee41';
                 //     return characteristic.readValue();
                 // })
                 .then(value => {
-                    console.log(`Temp is ${value.getUint8(0)}`);
+                    // console.log(`Temp is ${value.getUint8(0)}`);
+                    console.log('Temp is${value.getUnit16(2,true)/20}');//getUint16(2, true) / 20
                 })
         }
 
