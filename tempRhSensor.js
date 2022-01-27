@@ -22,29 +22,28 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
             this._characteristics = new Map();
         }
         connect() {
-            return navigator.bluetooth.requestDevice({ 
-                // filters: [{ 
-                //     name: 'adget'}],
-                // optionalServices: [service_UUID_1, service_UUID_2,service_UUID_3,service_UUID_4,service_UUID_5,service_UUID_6,service_UUID_7] 
-                filters: [{
-                    services: [service_UUID_6]
-                  }]
-            })
+                return navigator.bluetooth.requestDevice({ 
+                    filters: [{
+                        services: [service_UUID_1]
+                      }],
+                      optionalServices: [service_UUID_1, service_UUID_2,service_UUID_3,service_UUID_4,service_UUID_5,service_UUID_6,service_UUID_7] 
+                })
                 .then(device => {
                     this.device = device;
                     return device.gatt.connect();
                 })
                 .then(server => {
                     this.server = server;
-                    return server.getPrimaryService(service_UUID_6);
+                    return server.getPrimaryService(service_UUID_1);
                 })
                 .then(service => {
                     return this._cacheCharacteristic(service, 
-                    characteristic_UUID_1);
+                    characteristic_UUID_2);
                     // return service.getCharacteristic(characteristic_UUID_1);
                 })
                 .then(value => {
-                    // console.log("value",value);
+                    this.value = value;
+                    console.log(value);
                     let decoder = new TextDecoder('utf-8');
                     let name = decoder.decode(value)
                     this.outputvalue = name;
@@ -64,10 +63,10 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
         /* Temp Service */
 
         startNotificationsTempRhMeasurement() {
-            return this._startNotifications(characteristic_UUID_1);
+            return this._startNotifications(characteristic_UUID_2);
         }
         stopNotificationsTempRhMeasurement() {
-            return this._stopNotifications(characteristic_UUID_1);
+            return this._stopNotifications(characteristic_UUID_2);
         }
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
