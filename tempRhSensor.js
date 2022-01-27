@@ -24,7 +24,7 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
         connect() {
                 return navigator.bluetooth.requestDevice({ 
                     filters: [{
-                        services: [service_UUID_1]
+                        services: [service_UUID_6]
                       }],
                       optionalServices: [service_UUID_1, service_UUID_2,service_UUID_3,service_UUID_4,service_UUID_5,service_UUID_6,service_UUID_7] 
                 })
@@ -34,11 +34,11 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
                 })
                 .then(server => {
                     this.server = server;
-                    return server.getPrimaryService(service_UUID_1);
+                    return server.getPrimaryService(service_UUID_6);
                 })
                 .then(service => {
                     return this._cacheCharacteristic(service, 
-                    characteristic_UUID_2);
+                    characteristic_UUID_1);
                     // return service.getCharacteristic(characteristic_UUID_1);
                 })
                 .then(value => {
@@ -63,10 +63,10 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
         /* Temp Service */
 
         startNotificationsTempRhMeasurement() {
-            return this._startNotifications(characteristic_UUID_2);
+            return this._startNotifications(characteristic_UUID_1);
         }
         stopNotificationsTempRhMeasurement() {
-            return this._stopNotifications(characteristic_UUID_2);
+            return this._stopNotifications(characteristic_UUID_1);
         }
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
