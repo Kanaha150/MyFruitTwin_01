@@ -44,17 +44,17 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
                     // return service.getCharacteristic(characteristic_UUID_1);
                 })
                 .then(value => {
-                    console.log("value",value);
+                    // console.log("value",value);
                     let decoder = new TextDecoder('utf-8');
                     let name = decoder.decode(value)
                     this.outputvalue = name;
-                    this.lastupdate = new Date().toJSON();
+                    // this.lastupdate = new Date().toJSON();
                     console.log('value is ' + name);
                     // // console.log(`Temp is ${value.getUint8(0)}`);
                     // // console.log(`Temp1 is ${value.getUint8(0,true)}`);
                     // console.log(`Temp2 is ${value.getUint8(0)}`);
                     // // console.log(`Temp3 is ${value.getUint8(1,true)}`);
-                    // console.log(`Temp4 is ${value.getUint16(1)}`);
+                    // console.log(`Temp4 is ${value.getFloat32(0,/*littleEndian=*/ true)}`);
                     // // console.log(`Temp5 is ${value.getUint8(2,true)}`);
                     // console.log(`Temp6 is ${value.getUint16(2,true)}`);
                     // console.log('Temp is ${value.getUint16(1,true)/100}');//getUint16(2, true) / 20
@@ -72,8 +72,8 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
         parseTempRh(value) {
             // In Chrome 50+, a DataView is returned instead of an ArrayBuffer.
             value = value.buffer ? value : new DataView(value);
-            // let flags = value.getUint8(0);
-            let flags = value.getUint16(0, true)/100;
+            let flags = value.getUint8(0);
+            // let flags = value.getUint16(0, true)/100;
             let rate16Bits = flags & 0x1;
             let result = {};
             let index = 1;
