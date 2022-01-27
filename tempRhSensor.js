@@ -23,9 +23,12 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
         }
         connect() {
             return navigator.bluetooth.requestDevice({ 
-                filters: [{ 
-                    name: 'adget'}],
-                optionalServices: [service_UUID_1, service_UUID_2,service_UUID_3,service_UUID_4,service_UUID_5,service_UUID_6,service_UUID_7] 
+                // filters: [{ 
+                //     name: 'adget'}],
+                // optionalServices: [service_UUID_1, service_UUID_2,service_UUID_3,service_UUID_4,service_UUID_5,service_UUID_6,service_UUID_7] 
+                filters: [{
+                    services: [service_UUID_1, service_UUID_2,service_UUID_3,service_UUID_4,service_UUID_5,service_UUID_6,service_UUID_7]
+                  }]
             })
                 .then(device => {
                     this.device = device;
