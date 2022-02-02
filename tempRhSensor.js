@@ -24,8 +24,7 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
         connect() {
                 return navigator.bluetooth.requestDevice({ 
                     filters: [{
-                        services: [service_UUID_6]
-                      }],
+                        namePrefix: 'S'}],
                       optionalServices: [service_UUID_1, service_UUID_2,service_UUID_3,service_UUID_4,service_UUID_5,service_UUID_6,service_UUID_7] 
                 })
                 .then(device => {
@@ -42,21 +41,9 @@ const characteristic_UUID_2 = '00001235-b38d-4985-720e-0f993a68ee41';//maybe RH
                     // return service.getCharacteristic(characteristic_UUID_1);
                 })
                 .then(value => {
-                    this.value = value;
-                    console.log(value);
-                    let decoder = new TextDecoder('utf-8');
-                    let name = decoder.decode(value)
-                    this.outputvalue = name;
-                    // this.lastupdate = new Date().toJSON();
-                    console.log('value is ' + name);
-                    // // console.log(`Temp is ${value.getUint8(0)}`);
-                    // // console.log(`Temp1 is ${value.getUint8(0,true)}`);
-                    // console.log(`Temp2 is ${value.getUint8(0)}`);
-                    // // console.log(`Temp3 is ${value.getUint8(1,true)}`);
-                    // console.log(`Temp4 is ${value.getFloat32(0,/*littleEndian=*/ true)}`);
-                    // // console.log(`Temp5 is ${value.getUint8(2,true)}`);
-                    // console.log(`Temp6 is ${value.getUint16(2,true)}`);
-                    // console.log('Temp is ${value.getUint16(1,true)/100}');//getUint16(2, true) / 20
+
+                    // this.value = value;
+                    console.log(`Temp is ${value}`);
                 })
         }
 
